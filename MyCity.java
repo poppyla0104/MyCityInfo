@@ -26,8 +26,8 @@ import org.json.simple.parser.JSONParser;
 
 public class MyCity {
    public static String city = "", country = "";
-   public static String weatherKey = "5666356ff80e105a2dbd2e491e74fd8d";
-   public static String holidayKey = "50c8ca40bb83492c87ca373d77dd1a06";
+   public static String weatherKey = WEATHERKEY;
+   public static String holidayKey = SECRETKEY;
    public static String weatherBody = "", holidayBody = "", airBody = "";
 
    public static void main (String[] args) throws IOException {
@@ -84,14 +84,14 @@ public class MyCity {
 
       // for air pollution api
       } else if (apiNumber == 2) {
-         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(api)).header("x-rapidapi-host", "air-quality-by-api-ninjas.p.rapidapi.com").header("x-rapidapi-key", "95d8f5b729msh572b56520ec1766p12cb8ajsn2c3b435879c6").method("GET", HttpRequest.BodyPublishers.noBody()).build();
+         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(api)).header("x-rapidapi-host", "air-quality-by-api-ninjas.p.rapidapi.com").header("x-rapidapi-key", SECRETKEY).method("GET", HttpRequest.BodyPublishers.noBody()).build();
          HttpResponse<String> apiRespond = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
          respond = apiRespond.statusCode();
          airBody = apiRespond.body();              // store api's JSON body as string
          
       // for holiday api
       } else if (apiNumber == 3) {
-         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(api)).header("x-rapidapi-host", "public-holiday.p.rapidapi.com").header("x-rapidapi-key", "95d8f5b729msh572b56520ec1766p12cb8ajsn2c3b435879c6").method("GET", HttpRequest.BodyPublishers.noBody()).build();
+         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(api)).header("x-rapidapi-host", "public-holiday.p.rapidapi.com").header("x-rapidapi-key", SECRETKEY).method("GET", HttpRequest.BodyPublishers.noBody()).build();
          HttpResponse<String> apiRespond = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
          respond = apiRespond.statusCode();
          holidayBody = apiRespond.body();          // store api's JSON body as string
